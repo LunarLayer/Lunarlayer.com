@@ -8,7 +8,7 @@ const GlobalState = ({ children }) => {
   useEffect(() => {
     const fetchStrings = async () => {
       try {
-        const res = await axios.get("https://csfserver2.onrender.com/strings");
+        const res = await axios.get("https://lunarlayer-server.onrender.com/strings");
         setStrings(res.data);
       } catch (error) {
         console.log(error);
