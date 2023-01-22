@@ -4,7 +4,7 @@ import cors from "cors";
 import path from "path"
 
 const app = express();
-app.use(cors()); // might need to specify domain name at 24:35
+app.use(cors({ origin: 'http://lunarlayer.com/' }));
 app.use(express.json());
 const PORT = process.env.PORT || 8800;
 
