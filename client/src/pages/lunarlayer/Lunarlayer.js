@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 import './Lunarlayer.scss';
 
@@ -12,7 +13,7 @@ const Lunarlayer = () => {
         <p>(The site is still under construction)</p>
         <p>Hi! I'm Tom Steinmeier, an aspiring Front-end / Web dev. I dream of travelling the world on my motorbike as a freelancer</p>
         
-       <a href='/chord-scale-finder'>CSF</a>
+        <Link to="/chord">/chord</Link>
 
       </div>
     </>

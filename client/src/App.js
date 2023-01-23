@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Lunarlayer/>} />
-            <Route path="/chord-scale-finder" element={<ChordScaleFinder/>} />
+            <Route path="/chord" element={<ChordScaleFinder/>} />
         </Routes>
       </BrowserRouter>
     </GlobalState>
