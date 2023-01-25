@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import "./reset.css";
+
 import GlobalState from './GlobalState';
 
 import Lunarlayer from "./pages/lunarlayer/Lunarlayer";
@@ -11,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Lunarlayer/>} />
-            <Route path="/chord" element={<ChordScaleFinder/>} />
+            <Route path="/chord-scale-finder" element={<ChordScaleFinder/>} />
         </Routes>
       </BrowserRouter>
     </GlobalState>
