@@ -14,32 +14,59 @@ app.use(function(req, res, next) {
   next();
 });
 
-const db = mysql.createConnection({
+
+
+var mysql_pool  = mysql.createPool({
+  connectionLimit : 100,
   host: "mysql45.unoeuro.com",
   user: "lunarlayer_com",
   password: "nEyxG26mHkBect9fw5Dz",
   database: "lunarlayer_com_db"
 });
 
+
 app.get("/", (req, res) => {
-  res.json("app.get('/')");
+  mysql_pool.getConnection(function(err, connection) {
+    if (err) {
+      connection.release();
+      throw err;
+    }
+    connection.query('SELECT * FROM strings', (err2, data) => {	
+      if (err2) return res.json(err2);
+      res.json(data);
+    })
+    connection.release();
+  });
 });
 
 app.get("/strings", (req, res) => {
-  const q = "SELECT * FROM strings";
-  db.query(q, (err, data) => {
-    if (err) return res.json(err);
-    res.json(data);
-  })
+  mysql_pool.getConnection(function(err, connection) {
+    if (err) {
+      connection.release();
+      throw err;
+    }
+    connection.query('SELECT * FROM strings', (err2, data) => {	
+      if (err2) return res.json(err2);
+      res.json(data);
+    })
+    connection.release();
+  });
 });
 
 app.get("/tonality", (req, res) => {
-  const q = "SELECT * FROM tonality";
-  db.query(q, (err, data) => {
-    if (err) return res.json(err);
-    res.json(data);
-  })
+  mysql_pool.getConnection(function(err, connection) {
+    if (err) {
+      connection.release();
+      throw err;
+    }
+    connection.query('SELECT * FROM tonality', (err2, data) => {	
+      if (err2) return res.json(err2);
+      res.json(data);
+    })
+    connection.release();
+  });
 });
+
 
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
