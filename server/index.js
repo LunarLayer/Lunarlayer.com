@@ -21,6 +21,10 @@ const db = mysql.createConnection({
   database: "lunarlayer_com_db"
 });
 
+app.get("/", (req, res) => {
+  res.json("app.get('/')");
+});
+
 app.get("/strings", (req, res) => {
   const q = "SELECT * FROM strings";
   db.query(q, (err, data) => {
