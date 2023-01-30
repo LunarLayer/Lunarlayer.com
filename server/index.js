@@ -2,10 +2,12 @@ import express from "express";
 import mysql from "mysql";
 import cors from "cors";
 import path from "path"
+import errorhandler from "errorhandler";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(errorhandler({ dumpExceptions: true, showStack: true })); 
 const PORT = process.env.PORT || 8800;
 
 app.use(function(req, res, next) {
@@ -14,8 +16,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
 var mysql_pool  = mysql.createPool({
   connectionLimit : 100,
   host: "mysql45.unoeuro.com",
@@ -23,7 +23,6 @@ var mysql_pool  = mysql.createPool({
   password: "nEyxG26mHkBect9fw5Dz",
   database: "lunarlayer_com_db"
 });
-
 
 app.get("/", (req, res) => {
   mysql_pool.getConnection(function(err, connection) {
