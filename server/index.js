@@ -51,6 +51,32 @@ app.get("/strings", (req, res) => {
     connection.release();
   });
 });
+app.post("/strings", (req, res) => {
+  mysql_pool.getConnection(function(err, connection) {
+    if (err) {
+      connection.release();
+      throw err;
+    }
+    connection.query('INSERT INTO `strings`(`number`, `note`) VALUES (7,"X")', (err2, data) => {	
+      if (err2) return res.json(err2);
+      res.json(data);
+    })
+    connection.release();
+  });
+});
+app.delete("/strings", (req, res) => {
+  mysql_pool.getConnection(function(err, connection) {
+    if (err) {
+      connection.release();
+      throw err;
+    }
+    connection.query('DELETE FROM `strings` WHERE `number`= 7;', (err2, data) => {	
+      if (err2) return res.json(err2);
+      res.json(data);
+    })
+    connection.release();
+  });
+});
 
 app.get("/tonality", (req, res) => {
   mysql_pool.getConnection(function(err, connection) {
