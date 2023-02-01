@@ -1,22 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./reset.css";
-
-import GlobalState from './GlobalState';
+import './basics/reset.css';
+import './basics/variables.scss';
 
 import Lunarlayer from "./pages/lunarlayer/Lunarlayer";
 import ChordScaleFinder from "./pages/chord-scale-finder/ChordScaleFinder";
 
+import React from "react";
+
 function App() {
   return (
-    <GlobalState>
+    <React.StrictMode>
       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Lunarlayer/>} />
-            <Route path="/chord-scale-finder" element={<ChordScaleFinder/>} />
+          <Route path="/" element={<ChordScaleFinder />} />
+          {/* <Route path="/" element={<Lunarlayer />} /> */}
+          <Route path="/chord-scale-finder" element={<ChordScaleFinder />} />
         </Routes>
       </BrowserRouter>
-    </GlobalState>
+    </React.StrictMode>
   );
 }
 

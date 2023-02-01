@@ -1,0 +1,21 @@
+.fretboard-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 15px;
+  }
+
+  .display {
+    border: 1px solid black;
+    margin: 0 15px;
+
+    @media(max-width: 600px) {
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+.key, .strings, .tuning, .notes {
+  flex-direction: column;
+
+  .title {
+    user-select: none;
+    font-family: 'Krub', sans-serif;
+    font-size: 20px;
+    margin-block: 7px;
+  }
+
+  .content {
+    display: flex;
+
+    &>button {
+      cursor: pointer;
+      border: 1px solid black;
+      background-color: white;
+      height: 50px;
+      min-width: 50px;
+      padding: 0 10px;
+
+      &:hover {
+        border: 2px solid var(--selected);
+        padding: 0 9px;
+      }
+    }
+  }
+}
+
+.key {
+
+}
+
+.strings {
+  .content {
+    height: 50px;
+    min-width: 50px;
+
+    .counter {
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      padding: 0 1px;
+      min-width: 50px;
+    }
+    
+    .incrementer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 5px;
+  
+      &>button {
+        cursor: pointer;
+        border: 1px solid black;
+        min-width: 23px;
+        min-height: 23px;
+        padding: 1px;
+        background-color: white;
+
+        &:hover {
+          border: 2px solid var(--selected);
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+.tuning {
+  .title {
+
+  }
+
+  .content {
+    button {
+      letter-spacing: 5px;
+    }
+  }
+}
+
+.notes {
+  
+}

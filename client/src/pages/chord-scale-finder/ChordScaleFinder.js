@@ -1,26 +1,21 @@
-import React, { useContext } from 'react';
-
-// import { Context } from '../../GlobalState';
+import React from 'react';
 
 import './ChordScaleFinder.scss';
-import FretboardPanel from "./panels/FretboardPanel/Fretboard-panel";
+
+import MusicContext from './context/MusicContext';
+
+import FretboardPanel from "./fretboard-section/panels/fretboardPanel/FretboardPanel";
+import ChordProgressionPanel from './chordProgression-section/panels/ChordProgression/ChordProgressionPanel';
 
 const ChordScaleFinder = () => {
-  // const [strings,  setStrings]  = useContext(Context);
-  // const [tonality, setTonality] = useContext(Context);
-
   return (
     <>
-      <div className='chordScaleFinder'>
-        Chordscalefinder here.
-
-        {/* Strings: <h2>{strings.map((string) => 
-          <p>{string.note}</p>
-        )}</h2>
-        Tonality: <h2>{tonality}</h2> */}
-        <FretboardPanel></FretboardPanel>
-
-      </div>
+      <MusicContext>
+        <div className='chordScaleFinder'>
+          <FretboardPanel/>
+          <ChordProgressionPanel/>
+        </div>
+      </MusicContext>
     </>
   );
 };

@@ -1,0 +1,28 @@
+.chordProgressionPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  .title {
+
+  }
+
+  .content {
+    border: 1px solid black;
+    height: 700px;
+
+    margin: 0 15px;
+
+    button {
+      width:  100px;
+      height: 100px;
+
+      &:active {
+        background-color: red;
+      }
+    }
+
+    @media(max-width: 600px) {
+      margin: 0;
+    }
+  }
+}

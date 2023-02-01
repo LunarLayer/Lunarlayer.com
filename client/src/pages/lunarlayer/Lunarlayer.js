@@ -9,12 +9,12 @@ const Lunarlayer = () => {
   return (
     <>
       <div className='lunarlayer'>
+        <h1>Context</h1>
         <h3>Welcome to LunarLayer.</h3>
         <p>(The site is still under construction)</p>
         <p>Hi! I'm Tom Steinmeier, an aspiring Front-end / Web dev. I dream of travelling the world on my motorbike as a freelancer</p>
         
         <Link to="/chord-scale-finder">/chord</Link>
-
       </div>
     </>
   );
