@@ -1,0 +1,33 @@
+.note {
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  aspect-ratio: 1/ 1;
+  min-width: 15px;
+  width: 45px;
+  max-width: 45px;
+
+  border: 2px solid black;
+  border-radius: 10%;
+
+  &.hidden {
+    visibility: hidden;
+  }
+
+  &.sharp::after {
+    content: "#";
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: white;
+    background-color: var(--selected);
+  }
+}

@@ -1,0 +1,244 @@
+.fretboard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid hotpink;
+
+  .background {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+  }
+
+  .topUtil, .bottomUtil { 
+    border: 1px solid red;
+    height: 50px;
+    width: 100%;
+    max-width: 1000px; 
+  }
+
+  .strings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    .string {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      overflow: hidden;
+
+      .note {
+        position: relative;
+        cursor: pointer;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        min-width: 15px;
+        width: 35px;
+        max-width: 35px;
+        font-size: 15px;
+
+        @media(max-width: 600px) {
+          font-size: 2.5vw;
+        }
+      }
+
+      .hiddenTuningNotes {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        gap: 6px;
+        margin-left: 6px;
+
+        @media(max-width: 600px) {
+          gap: 4px;
+          margin-left: 4px;
+        }
+      }
+
+      .sharp {
+        &::after {
+          content: "#";
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 12px;
+
+          @media(max-width: 600px) {
+            font-size: 2vw;
+          }
+        }
+      }
+
+      &.animateTuning {
+        -webkit-animation: slide-left var(--tuningDuration) cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: slide-left var(--tuningDuration) cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+    }
+
+    @media(max-width: 600px) {
+      gap: 4px;
+
+      .string { 
+        gap: 4px;
+      }
+    }
+  }
+
+   .bottomUtil {
+    border: 1px solid red;
+    height: 50px;
+  }
+}
+
+
+@-webkit-keyframes slide-left {
+ 0% {
+   -webkit-transform: translateX(0);
+           transform: translateX(0);
+ }
+ 100% {
+   -webkit-transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+           transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+ }
+}
+
+// need comp and reg version
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+            transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+  }
+}
+
+// // Regular gap is 11 * 5px = 55
+// // Compact gap is 11 * 2px = 22
+
+
+
+// .fretboard {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   .background {
+//     position: absolute;
+//     top: 0; right: 0; bottom: 0; left: 0;
+//     background-color: lightgrey;
+//   }
+
+//   .topUtil, .bottomUtil {
+//     z-index: 1;
+//     width: 100%;
+//     height: 50px;
+//     background-color: seagreen;
+//   }
+
+//   .strings {
+//     display: flex;
+//     flex-direction: column-reverse;
+//     row-gap: 5px;
+//     overflow: hidden;
+
+//     @media(max-width: 600px) { row-gap: 2px; }
+
+//     .string {
+//       position: relative;
+//       display: flex;
+//       column-gap: 5px;
+
+//       @media(max-width: 600px) { column-gap: 2px; }
+
+//       .note {
+//         cursor: pointer;
+//         position: relative;
+//         flex: 1;
+//         aspect-ratio: 1/1;
+//         padding: 0 1px;
+//         width: 40px;
+//         background-color: white;
+//         border-radius: 7%;
+//         font-size: 18px;
+//         resize: both;
+
+//         &:hover { border: 2px solid var(--selected); }
+
+//         &.selected {
+//           border: 2px solid var(--selected);
+//         }
+
+//         @media(max-width: 600px) { font-size: 12px; }
+//       }
+
+//       .hiddenTuningNotes {
+//         position: absolute;
+//         display: flex;
+//         column-gap: 5px;
+//         left: calc(100% + 5px);      
+
+//         @media(max-width: 600px) {
+//             column-gap: 2px;
+//             left: calc(100% + 2px);
+//         }
+//       }
+
+//       .sharp {
+//         &::after {
+//           content: "#";
+//           position: absolute;
+//           top: 0;
+//           right: 1px;
+//           height: 25%;
+//           width: 25%;
+
+//           @media(max-width: 600px) {
+//             font-size: 8px;
+//           }
+//         }
+//       }
+
+//       &.animateTuning {
+//         -webkit-animation: slide-left var(--tuningDuration) cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+//         animation: slide-left var(--tuningDuration) cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+//       }
+//     }
+//   }
+// }
+
+
+// @-webkit-keyframes slide-left {
+//  0% {
+//    -webkit-transform: translateX(0);
+//            transform: translateX(0);
+//  }
+//  100% {
+//    -webkit-transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+//            transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+//  }
+// }
+
+// // need comp and reg version
+// @keyframes slide-left {
+//   0% {
+//     -webkit-transform: translateX(0);
+//             transform: translateX(0);
+//   }
+//   100% {
+//     -webkit-transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+//             transform: translateX(calc( -1 * ((100% - 55px) / 12 * var(--noteIndex) + (var(--noteIndex) * 5px))));
+//             // transform: translateX(100%);
+//   }
+// }
+
+// // Regular gap is 11 * 5px = 55
+// // Compact gap is 11 * 2px = 22
