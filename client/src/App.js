@@ -15,8 +15,8 @@ function App() {
     <React.StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ChordScaleFinder />} />
-          {/* <Route path="/" element={<Lunarlayer />} /> */}
+          {/* <Route path="/" element={<ChordScaleFinder />} /> */}
+          <Route path="/" element={<Lunarlayer />} />
           <Route path="/chord-scale-finder" element={<ChordScaleFinder />} />
         </Routes>
       </BrowserRouter>

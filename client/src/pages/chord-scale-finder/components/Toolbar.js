@@ -1,13 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import './Toolbar.scss';
 import { MusicContext } from '../context/MusicContext';
+import { BrowserContext } from '../context/BrowserContext';
+
+// TODO: Failsafe for no frets (in fretboard.js)
 
 const Toolbar = () => {
   const music = useContext(MusicContext);
+  const browser = useContext(BrowserContext);
   const slider = React.createRef();
 
+  let noteGapSize = browser.x < 600 ? 2 : 5;
+  const noteMinWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--note_min_width'));
+  const noteMaxWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--note_max_width'));
+  let sliderMax = getSliderMax();
+  let sliderValue = music.fretCount;
+  
+
+  function getSliderMax() {
+    let padding = "";
+    let max = "";
+    browser.x <= 600 ? padding = 10 : padding = 20;
+    max = Math.floor((browser.x - padding - (music.fretCount * noteGapSize - noteGapSize)) / noteMinWidth);
+    if (max > 24) max = 24;
+    return max;
+  }
+
+  useEffect(() => {
+    if (browser.x <= 600) {
+      music.setFretCount(12);
+    } else {
+      music.setFretCount((Math.floor((browser.x - 20 - (music.fretCount * noteGapSize - noteGapSize)) / noteMaxWidth)) + 1);
+    }
+  }, [browser.x]);
+
+
+  if (sliderValue > sliderMax) sliderValue = sliderMax;
+
+
+
+
   function sliderMoved() {
+    console.log("val: " + sliderValue);
+    console.log("max: " + sliderMax);
+    sliderValue = slider.current.value;
     music.setFretCount(slider.current.value);
   }
 
@@ -50,14 +87,15 @@ const Toolbar = () => {
       </div>
 
       <div className={`frets-slider${music.displayView !== "fretboard" ? ' disabled' : ''}`}>
-        <h3>Frets: {music.fretCount === "-1" ? 'none' : music.fretCount}</h3>
+        {/* <h3>Frets: {sliderValue === "-1" ? 'none' : sliderValue}</h3> */}
+        <h3>Frets: {sliderValue}</h3>
         <div className='slider'>
           <input
             ref={slider}
             type="range"
-            value={music.fretCount}
+            value={sliderValue > sliderMax ? sliderMax : sliderValue}
             min="-1"
-            max="24"
+            max={sliderMax}
             onChange={sliderMoved}
             disabled={`${music.displayView !== "fretboard" ? ' disabled' : ''}`}
           />

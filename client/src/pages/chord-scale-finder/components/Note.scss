@@ -7,9 +7,9 @@
   align-items: center;
 
   aspect-ratio: 1/ 1;
-  min-width: 15px;
-  width: 45px;
-  max-width: 45px;
+  min-width: calc(var(--note_min_width) * 1px);
+  width: calc(var(--note_max_width) * 1px);
+  max-width: calc(var(--note_max_width) * 1px);
 
   border: 2px solid black;
   border-radius: 10%;

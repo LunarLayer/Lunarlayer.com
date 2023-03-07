@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import './Fretboard.scss';
 import { MusicContext } from '../context/MusicContext';
@@ -8,30 +8,32 @@ import String from './String';
 const Fretboard = () => {
   const music = useContext(MusicContext);
   let notes = document.getElementsByClassName('note');
-  
-  window.addEventListener('resize', function() {
-    let fretboard = document.getElementById('fretboard');
-    let width = notes[0].offsetWidth;
 
-    if (width === 45) {
-      fretboard.style.fontSize = "25px";
-    } else {
-      let size = width / 2;
-      fretboard.style.fontSize = size + "px";
+  useEffect(() => {
+    const handleResize = () => {
+      let fretboard = document.getElementById('fretboard');
+      let width = notes[0].offsetWidth;
+
+      if (width === 45) {
+        fretboard.style.fontSize = "25px";
+      } else {
+        let size = width / 2;
+        fretboard.style.fontSize = size + "px";
+      }
     }
-    
-    // TODO: 
-    // - Debounce
-    // - Limit frets on smaller screen
-    // - UseEffect removeEffect thingy
-  });
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => { window.removeEventListener('resize', handleResize); };
 
+    // TODO: Limit frets on smaller screen (maybe add debounce)
+  });
+  
   
   return (
     <>
       <div id='fretboard'>
         {music.strings.map(string => {
-          return <String key={"string_" + string.number} stringNum={string.number} firstNote={string.note}></String>
+          return <String key={"string_" + string.number} index={string.number} firstNote={string.note}></String>
         })}
       </div>
     </>
@@ -57,7 +59,7 @@ export default Fretboard;
 
 
 
-// const String = ({stringNum, startNote}) => {
+// const String = ({index, startNote}) => {
 //   var notes = [];
 //   var offset = music.notes.findIndex((x) => x.name === startNote);
 
@@ -67,7 +69,7 @@ export default Fretboard;
 //   }
   
 //   return ( 
-//     <div id={"string_" + stringNum} className={`string`}>
+//     <div id={"string_" + index} className={`string`}>
 //       {notes.map((note, index) => {
 //         return <Note key={"note_" + index} note={note.name}></Note>
 //       })}
@@ -85,7 +87,7 @@ export default Fretboard;
 // const Fretboard = ({settings}) => {
 //   const music = useContext(MusicContext);
 
-//   const String = ({stringNum, startNote}) => {
+//   const String = ({index, startNote}) => {
 //     var notes = [];
 //     var offset = music.notes.findIndex((x) => x.name === startNote);
 
@@ -95,12 +97,12 @@ export default Fretboard;
 //     }
     
 //     return ( 
-//       <div id={"string_" + stringNum} className={`string`}>
+//       <div id={"string_" + index} className={`string`}>
 //         {notes.map((note, index) => {
 //           if (note.name.includes('#')) {
 //             return (
 //               <button 
-//               id={index.toString() + '_' + stringNum.toString()} 
+//               id={index.toString() + '_' + index.toString()} 
 //               key={index} 
 //               className={`${note.name} note sharp ${index === 0 ? "selected" : ''}`}>
 //                 {note.name[0]}
@@ -109,7 +111,7 @@ export default Fretboard;
 //           } else {
 //             return (
 //               <button 
-//               id={index.toString() + '_' + stringNum.toString()} 
+//               id={index.toString() + '_' + index.toString()} 
 //               key={index} 
 //               className={`${note.name} note ${index === 0 ? "selected" : ''}`}>
 //                 {note.name}
@@ -128,7 +130,7 @@ export default Fretboard;
 //           return (
 //             <String 
 //               key={'string_' + string.number} 
-//               stringNum={string.number} 
+//               index={string.number} 
 //               startNote={string.note}
 //             />
 //           )

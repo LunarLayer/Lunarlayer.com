@@ -1,5 +1,4 @@
 #fretboard {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,9 +13,17 @@
 
   @media(max-width: 600px) {
     gap: 2px;
+    padding: 0 5px;
     
     .string {
       gap: 2px;
     }
   }
 }
+
+
+
+
+
+// Page loads
+// Frets are based on fretCount

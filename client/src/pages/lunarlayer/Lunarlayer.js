@@ -9,7 +9,6 @@ const Lunarlayer = () => {
   return (
     <>
       <div className='lunarlayer'>
-        <img src='./assets/lunarlayer192.png'></img>
         <h1>Welcome to LunarLayer!</h1>
         <p>I'm Tom. Frontender, musician and traveler</p>
         <p>Currently banging my head against the <Link to="/chord-scale-finder">Chord scale finder</Link></p> 

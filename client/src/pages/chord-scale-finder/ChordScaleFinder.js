@@ -2,18 +2,21 @@ import React from 'react';
 
 import './ChordScaleFinder.scss';
 import MusicContext from './context/MusicContext';
+import BrowserContext from './context/BrowserContext';
 
 import Navbar from './components/Navbar';
 import Toolbar from './components/Toolbar';
 import Display from './components/Display';
 
-const ChordScaleFinder = () => {
+function ChordScaleFinder() {
   return (
-    <MusicContext>
-      <Navbar />
-      <Toolbar />
-      <Display />
-    </MusicContext>
+    <BrowserContext>
+      <MusicContext>
+        <Navbar />
+        <Toolbar />
+        <Display />
+      </MusicContext>
+    </BrowserContext>
   );
 };
 
